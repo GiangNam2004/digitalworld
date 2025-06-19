@@ -23,7 +23,7 @@ use Illuminate\Validation\Rules\Exists;
 class FrontendController extends Controller
 {
     public function index()
-    {   
+    {
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('home', [
@@ -33,12 +33,14 @@ class FrontendController extends Controller
     }
 
     public function show_product(Request $request)
-    {   
+    {
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $product = product::find($request->id);
         return view('productdetail', [
             'product' => $product,
-            'products' => $products
+            'products' => $products,
+            'brands' => $brands
         ]);
     }
     //cart 
@@ -65,17 +67,20 @@ class FrontendController extends Controller
         }
     }
     public function show_cart()
-    {   
+    {
+        $brands = product::select('origin')->distinct()->get();
         $cart  = Session::get('cart');
         if (empty($cart)) {
             return view('cart', [
-                'products' => []
+                'products' => [],
+                'brands' => $brands
             ]);
         } else {
             $product_id = array_keys($cart);
             $products = product::whereIn('id', $product_id)->get();
             return view('cart', [
-                'products' => $products
+                'products' => $products,
+                'brands' => $brands
             ]);
         }
     }
@@ -96,10 +101,10 @@ class FrontendController extends Controller
     public function send_cart(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'address'=>'required'
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required'
         ]);
         $token = Str::random(12);
         $order = new order;
@@ -121,7 +126,7 @@ class FrontendController extends Controller
         $tokenconfirm = $order->token;
         $Mail = Mail::to($maillink)->send(new TestMail($mailname, $tokenconfirm));
         Notification::send($order, new EmailNotification($order));
-        return redirect('/order/confirm/'.$order -> id);
+        return redirect('/order/confirm/' . $order->id);
     }
     public function show_login()
     {
@@ -139,18 +144,24 @@ class FrontendController extends Controller
         }
         return redirect()->back();;
     }
-    public function confirm_order(Request $request){
+    public function confirm_order(Request $request)
+    {
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $order = order::find($request->id);
-        return view('order.confirm',[
-            'order'=>$order,
-            'products'=>$products
+        return view('order.confirm', [
+            'order' => $order,
+            'products' => $products,
+            'brands' => $brands
         ]);
     }
-    public function success_order(){
+    public function success_order()
+    {
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
-        return view('order.success',[
-            'products'=>$products
+        return view('order.success', [
+            'products' => $products,
+            'brands' => $brands
         ]);
     }
 }
