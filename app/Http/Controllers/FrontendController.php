@@ -46,6 +46,7 @@ class FrontendController extends Controller
     //cart 
     public function add_cart(Request $request)
     {
+        
         $product_id = $request->product_id;
         $product_quantity = $request->product_quantity;
         if (is_null(Session::get('cart'))) {
