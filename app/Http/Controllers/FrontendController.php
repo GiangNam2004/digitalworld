@@ -34,11 +34,13 @@ class FrontendController extends Controller
 
     public function show_product(Request $request)
     {   
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $product = product::find($request->id);
         return view('productdetail', [
             'product' => $product,
-            'products' => $products
+            'products' => $products,
+            'brands' => $brands
         ]);
     }
     //cart 
@@ -66,16 +68,19 @@ class FrontendController extends Controller
     }
     public function show_cart()
     {   
+        $brands = product::select('origin')->distinct()->get();
         $cart  = Session::get('cart');
         if (empty($cart)) {
             return view('cart', [
-                'products' => []
+                'products' => [],
+                'brands' => $brands
             ]);
         } else {
             $product_id = array_keys($cart);
             $products = product::whereIn('id', $product_id)->get();
             return view('cart', [
-                'products' => $products
+                'products' => $products,
+                'brands' => $brands
             ]);
         }
     }
@@ -140,17 +145,21 @@ class FrontendController extends Controller
         return redirect()->back();;
     }
     public function confirm_order(Request $request){
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $order = order::find($request->id);
         return view('order.confirm',[
             'order'=>$order,
-            'products'=>$products
+            'products'=>$products,
+            'brands' => $brands
         ]);
     }
     public function success_order(){
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('order.success',[
-            'products'=>$products
+            'products'=>$products,
+            'brands' => $brands
         ]);
     }
 }
