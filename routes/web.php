@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatGPTController;
 
 //login
 Route::get('/login', [FrontendController::class, 'show_login'])->name('login');
@@ -45,12 +46,8 @@ Route::post('/uploads', [UploadController::class, 'uploadImages']);
 //frontend
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/product/{id}', [FrontendController::class, 'show_product']);
-Route::get('/order/confirm', function () {
-    return view('order.confirm');
-});
-Route::get('/order/success', function () {
-    return view('order.success');
-});
+Route::get('/order/confirm/{id}', [FrontendController::class, 'confirm_order']);
+Route::get('/order/success', [FrontendController::class, 'success_order']);
 
 //cart
 Route::post('/cart/add', [FrontendController::class, 'add_cart']);

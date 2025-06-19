@@ -23,18 +23,22 @@ use Illuminate\Validation\Rules\Exists;
 class FrontendController extends Controller
 {
     public function index()
-    {
+    {   
+        $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('home', [
-            'products' => $products
+            'products' => $products,
+            'brands' => $brands
         ]);
     }
 
     public function show_product(Request $request)
-    {
+    {   
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $product = product::find($request->id);
         return view('productdetail', [
-            'product' => $product
+            'product' => $product,
+            'products' => $products
         ]);
     }
     //cart 
@@ -61,7 +65,7 @@ class FrontendController extends Controller
         }
     }
     public function show_cart()
-    {
+    {   
         $cart  = Session::get('cart');
         if (empty($cart)) {
             return view('cart', [
@@ -117,7 +121,7 @@ class FrontendController extends Controller
         $tokenconfirm = $order->token;
         $Mail = Mail::to($maillink)->send(new TestMail($mailname, $tokenconfirm));
         Notification::send($order, new EmailNotification($order));
-        return redirect('/order/confirm');
+        return redirect('/order/confirm/'.$order -> id);
     }
     public function show_login()
     {
@@ -134,5 +138,19 @@ class FrontendController extends Controller
             return redirect('admin');
         }
         return redirect()->back();;
+    }
+    public function confirm_order(Request $request){
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
+        $order = order::find($request->id);
+        return view('order.confirm',[
+            'order'=>$order,
+            'products'=>$products
+        ]);
+    }
+    public function success_order(){
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
+        return view('order.success',[
+            'products'=>$products
+        ]);
     }
 }

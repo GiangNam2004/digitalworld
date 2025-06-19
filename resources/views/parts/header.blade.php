@@ -9,20 +9,18 @@
                     </svg>
                 </div>
                 <div class="header-logo">
-                    <a href="/"><img src="{{asset('frontend/asset/images/logo.png')}}" alt=""></a>
+                    <a href="/"><img src="{{ asset('frontend/asset/images/logo.png') }}" alt=""></a>
                 </div>
                 <div class="header-logo-mobile">
-                    <img src="{{asset('frontend/asset/images/logo-mobile.png')}}" alt="">
+                    <img src="{{ asset('frontend/asset/images/logo-mobile.png') }}" alt="">
                 </div>
                 <div class="header-nav">
                     <nav>
                         <ul>
-
                             <li><a href="">SẢN PHẨM</a></li>
-                            <li><a href="">ACER</a></li>
-                            <li><a href="">ASUS</a></li>
-                            <li><a href="">ĐỒ THỂ THAO</a></li>
-                            <li><a href="">SẢN XUẤT RIÊNG</a></li>
+                            @foreach ($brands as $brand)
+                                <li><a href="">{{ strtoupper($brand->origin) }}</a></li>
+                            @endforeach
                         </ul>
                     </nav>
                 </div>
@@ -42,7 +40,7 @@
                             d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
                     </svg>
                     <div class="cart-animated">
-                        <img src="{{asset('frontend/asset/icon_gif/shopping-cart.gif')}}" alt="">
+                        <img src="{{ asset('frontend/asset/icon_gif/shopping-cart.gif') }}" alt="">
                     </div>
                 </div>
 
