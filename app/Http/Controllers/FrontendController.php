@@ -18,70 +18,87 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rules\Exists;
 
 class FrontendController extends Controller
 {
     public function index()
     {
+        $total_quantity = array_sum(Session::get('cart', []));
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('home', [
             'products' => $products,
-            'brands' => $brands
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
         ]);
     }
 
-    public function show_product(Request $request)
+    public function show_product_id(Request $request)
     {
+        $total_quantity = array_sum(Session::get('cart', []));
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $product = product::find($request->id);
         return view('productdetail', [
             'product' => $product,
             'products' => $products,
-            'brands' => $brands
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
+        ]);
+    }
+    public function show_product_brand(Request $request)
+    {
+        $total_quantity = array_sum(Session::get('cart', []));
+        $brands = product::select('origin')->distinct()->get();
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->where('origin',$request->brand)->get();
+        return view('home', [
+            'products' => $products,
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
         ]);
     }
     //cart 
     public function add_cart(Request $request)
     {
-        
+
         $product_id = $request->product_id;
         $product_quantity = $request->product_quantity;
         if (is_null(Session::get('cart'))) {
             Session::put('cart', [
                 $product_id => $product_quantity
             ]);
-            return redirect('/cart');
         } else {
             $cart = Session::get('cart');
             if (Arr::exists($cart, $product_id)) {
                 $cart[$product_id] = $cart[$product_id] + $product_quantity;
                 Session::put('cart', $cart);
-                return redirect('/cart');
             } else {
                 $cart[$product_id] = $product_quantity;
                 Session::put('cart', $cart);
-                return redirect('/cart');
             }
         }
+        return redirect('/cart');
     }
     public function show_cart()
     {
+        $total_quantity = array_sum(Session::get('cart', []));
         $brands = product::select('origin')->distinct()->get();
         $cart  = Session::get('cart');
         if (empty($cart)) {
             return view('cart', [
                 'products' => [],
-                'brands' => $brands
+                'brands' => $brands,
+                'total_quantity' => $total_quantity
             ]);
         } else {
             $product_id = array_keys($cart);
             $products = product::whereIn('id', $product_id)->get();
             return view('cart', [
                 'products' => $products,
-                'brands' => $brands
+                'brands' => $brands,
+                'total_quantity' => $total_quantity
             ]);
         }
     }
@@ -147,22 +164,26 @@ class FrontendController extends Controller
     }
     public function confirm_order(Request $request)
     {
+        $total_quantity = array_sum(Session::get('cart', []));
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $order = order::find($request->id);
         return view('order.confirm', [
             'order' => $order,
             'products' => $products,
-            'brands' => $brands
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
         ]);
     }
     public function success_order()
     {
+        $total_quantity = array_sum(Session::get('cart', []));
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('order.success', [
             'products' => $products,
-            'brands' => $brands
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
         ]);
     }
 }

@@ -17,9 +17,9 @@
                 <div class="header-nav">
                     <nav>
                         <ul>
-                            <li><a href="">SẢN PHẨM</a></li>
+                            <li><a href="/">SẢN PHẨM</a></li>
                             @foreach ($brands as $brand)
-                                <li><a href="">{{ strtoupper($brand->origin) }}</a></li>
+                                <li><a href="/product/{{$brand->origin}}">{{ mb_strtoupper($brand->origin) }}</a></li>
                             @endforeach
                         </ul>
                     </nav>

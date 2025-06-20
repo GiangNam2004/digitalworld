@@ -45,7 +45,8 @@ Route::post('/uploads', [UploadController::class, 'uploadImages']);
 
 //frontend
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/product/{id}', [FrontendController::class, 'show_product']);
+Route::get('/product/{id}', [FrontendController::class, 'show_product_id'])->where('id', '[0-9]+');
+Route::get('/product/{brand}', [FrontendController::class, 'show_product_brand'])->where('brand', '[\p{L}\p{N}\s\-]+');
 Route::get('/order/confirm/{id}', [FrontendController::class, 'confirm_order']);
 Route::get('/order/success', [FrontendController::class, 'success_order']);
 
