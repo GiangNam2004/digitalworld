@@ -30,7 +30,8 @@
                         <td>{{ $order->created_at }}</td>
                         <td><a class="non-confirm-order" href="">Chưa xác nhận</a></td>
                         <td>
-                            <a class="delete-class" href="">Xóa</a>
+                            <a onclick="removeRow(order_id={{ $order->id }},url='/admin/order/delete')"
+                                class="delete-class" href="#">Xóa</a>
                         </td>
                     </tr>
                 @endforeach
@@ -39,3 +40,26 @@
         </table>
     </div>
 @endsection()
+@section('footer')
+    <script>
+        function removeRow(order_id, url) {
+            event.preventDefault();
+            if (confirm('Bạn có chắc chắn muốn xóa đơn hàng này ờ hớ ?')) {
+                $.ajax({
+                    url: url,
+                    data: {
+                        order_id
+                    },
+                    method: 'GET',
+                    dataType: 'JSON',
+                    success: function(res) {
+                        if (res.success == true) {
+                            location.reload();
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+@endsection
+

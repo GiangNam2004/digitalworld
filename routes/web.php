@@ -38,6 +38,7 @@ Route::post('/admin/product/edit/{id}', [ProductController::class, 'update_produ
 //order
 Route::get('/admin/order/list', [OrderController::class, 'list_order']);
 Route::get('/admin/order/detail/{order_detail}', [OrderController::class, 'detail_order']);
+Route::get('/admin/order/delete', [OrderController::class, 'delete_order']);
 
 //upload
 Route::post('/upload', [UploadController::class, 'uploadImage']);

@@ -27,4 +27,11 @@ class OrderController extends Controller
             'order_detail' => $order_detail
         ]);
     }
+    public function delete_order(Request $request)
+    {
+        order::find($request->order_id)->delete();
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }
