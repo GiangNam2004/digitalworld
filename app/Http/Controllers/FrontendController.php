@@ -25,7 +25,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('home', [
@@ -37,7 +37,7 @@ class FrontendController extends Controller
 
     public function show_product_id(Request $request)
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $product = product::find($request->id);
@@ -50,7 +50,7 @@ class FrontendController extends Controller
     }
     public function show_product_brand(Request $request)
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->where('origin',$request->brand)->get();
         return view('home', [
@@ -83,7 +83,7 @@ class FrontendController extends Controller
     }
     public function show_cart()
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $cart  = Session::get('cart');
         if (empty($cart)) {
@@ -164,7 +164,7 @@ class FrontendController extends Controller
     }
     public function confirm_order(Request $request)
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         $order = order::find($request->id);
@@ -177,7 +177,7 @@ class FrontendController extends Controller
     }
     public function success_order()
     {
-        $total_quantity = array_sum(Session::get('cart', []));
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
         $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->get();
         return view('order.success', [

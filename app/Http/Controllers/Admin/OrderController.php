@@ -34,4 +34,19 @@ class OrderController extends Controller
             'success' => true
         ]);
     }
+    public function check_order_token(Request $request)
+    {
+        $name  = $request->query('name');
+        $token = $request->query('token');
+        $order = order::where('token', $token)->firstOrFail();
+        if ($order->name !== $name) {
+            abort(403, 'Sai thông tin xác nhận!');
+        } else {
+            $order->update([
+                'status' => '1',
+                'token'  => null,
+            ]);
+            return redirect('/order/success');
+        }
+    }
 }

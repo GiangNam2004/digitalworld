@@ -16,4 +16,8 @@ class order extends Model
         // Return email address only...
         return 'dinhvane168@gmail.com';
     }
+    protected $fillable = [
+        'name', 'phone', 'email', 'city', 'district', 'ward', 'address', 
+        'note', 'order_detail', 'token', 'status'  // Thêm status ở đây
+    ];
 }
