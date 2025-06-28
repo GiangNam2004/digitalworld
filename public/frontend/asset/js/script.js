@@ -91,3 +91,30 @@ if (quantityMinus != null && quantityPLus != null) {
 
     }
 }
+//effect
+$(document).ready(function () {
+    // Hàm kiểm tra khi người dùng cuộn trang
+    $(window).on('scroll', function () {
+        // Kiểm tra tất cả các phần tử có class 'scroll-effect'
+        $('.slide-left-effect, .slide-right-effect, .slide-top-effect, .slide-bottom-effect, .fade-in-effect').each(function () {
+            var elementTop = $(this).offset().top;  // Vị trí của phần tử trên trang
+            var windowBottom = $(window).scrollTop() + $(window).height();  // Vị trí của cửa sổ trình duyệt
+
+            // Kiểm tra xem phần tử đã vào màn hình chưa
+            if (windowBottom > elementTop) {
+                $(this).addClass('in-view');  // Thêm class để kích hoạt hiệu ứng
+            }
+        });
+    });
+
+    // Khởi tạo hiệu ứng khi trang tải lần đầu
+    $(window).trigger('scroll');
+});
+window.onbeforeunload = function () {
+    document.querySelector('.loading-effect').style.display = 'flex';
+    document.querySelector('.dark-effect').classList.add('show');
+    setTimeout(function () {
+        document.querySelector('.loading-effect').style.display = 'none';
+        document.querySelector('.dark-effect').classList.remove('show');
+    }, 10000);
+};

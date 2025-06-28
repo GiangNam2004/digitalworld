@@ -17,13 +17,15 @@
             <tbody>
                 @php
                     $total = 0;
+                    $value = 1.5;
                 @endphp
                 @foreach ($products as $product)
                     @php
                         $price = $product->price_sale * $order_detail[$product->id];
                         $total += $price;
                     @endphp
-                    <tr>
+                    <tr style="opacity: 1 ; transition: all {{$value++}}s ease-out"
+                        class="slide-right-effect">
                         <td>{{ $product->id }}</td>
                         <td><img style="width: 70px;" src="{{ asset($product->image) }}" alt="">
                         </td>
@@ -36,9 +38,9 @@
                         </td>
                     </tr>
                 @endforeach
-                <tr>
+                <tr class="slide-left-effect">
                     <td style="font-weight: 700" colspan="5">Tổng Cộng </td>
-                    <td style="font-weight: 700"> {{number_format($total)}}</td>
+                    <td style="font-weight: 700"> {{ number_format($total) }}</td>
                     <td></td>
                 </tr>
             </tbody>

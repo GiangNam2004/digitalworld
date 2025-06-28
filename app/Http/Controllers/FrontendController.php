@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rules\Exists;
 
 class FrontendController extends Controller
-{
+{   
     public function index()
     {
         $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
@@ -52,7 +52,18 @@ class FrontendController extends Controller
     {
         $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
         $brands = product::select('origin')->distinct()->get();
-        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->where('origin',$request->brand)->get();
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->where('origin', $request->brand)->get();
+        return view('home', [
+            'products' => $products,
+            'brands' => $brands,
+            'total_quantity' => $total_quantity
+        ]);
+    }
+    public function show_product_text(Request $request)
+    {
+        $total_quantity = is_array(Session::get('cart', [])) ? array_sum(Session::get('cart', [])) : 0;
+        $brands = product::select('origin')->distinct()->get();
+        $products = product::select('name', 'origin', 'price_normal', 'price_sale', 'image', 'id')->where('name', 'like', '%' . $request->text . '%')->get();
         return view('home', [
             'products' => $products,
             'brands' => $brands,

@@ -3,24 +3,24 @@
     <form action="" enctype="multipart/form-data" method="post">
         <div class="admin-content-main-product-add">
             <div class="admin-content-main-left">
-                <div class="admin-content-main-double-input">
+                <div class="admin-content-main-double-input slide-left-effect">
                     <input type="text" value="{{ $product->name }}" name="name" placeholder="Tên Sản Phẩm">
                     <input type="text" value="{{ $product->origin }}" name="origin" placeholder="Nơi Sản Xuất">
                 </div>
-                <div class="admin-content-main-double-input">
+                <div class="admin-content-main-double-input slide-right-effect">
                     <input type="text" value="{{ $product->price_normal }}" name="price_normal" placeholder="Giá Bán">
                     <input type="text" value="{{ $product->price_sale }}" name="price_sale" placeholder="Giá Giảm">
                 </div>
-                <div class="ckeditor">
+                <div class="ckeditor slide-top-effect">
                     <textarea class="editor_des" value="" name="description" id="" rows="30">{{ $product->description }}</textarea>
                 </div>
-                <div class="ckeditor">
+                <div class="ckeditor slide-bottom-effect">
                     <textarea class="editor_content" value="" name="content" id="">{{ $product->content }}</textarea>
                 </div>
-                <button type="submit" class="main-btn">Cập Nhật Sản Phẩm</button>
+                <button type="submit" class="main-btn slide-left-effect">Cập Nhật Sản Phẩm</button>
             </div>
             <div class="admin-content-main-right">
-                <div class="admin-content-main-right-image">
+                <div class="admin-content-main-right-image slide-bottom-effect">
                     <label for="file">Ảnh Đại Diện</label>
                     <input id="file" type="file">
                     <input type="hidden" name="image" value="{{ $product->image }}" id="input-file-img-hiden">
@@ -28,7 +28,7 @@
                         <img src="{{ asset($product->image) }}" alt="">
                     </div>
                 </div>
-                <div class="admin-content-main-right-images">
+                <div class="admin-content-main-right-images slide-top-effect">
                     <label for="files">Ảnh Sản Phẩm</label>
                     <input id="files" type="file" multiple>
                     <div class="images-display" id="input-file-imgs">

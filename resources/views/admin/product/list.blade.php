@@ -3,7 +3,7 @@
     <div class="admin-content-main-product-list">
         <table>
             <thead>
-                <tr>
+                <tr class="slide-top-effect">
                     <th>ID</th>
                     <th>Ảnh</th>
                     <th>Tên Sản Phẩm</th>
@@ -14,9 +14,11 @@
                 </tr>
             </thead>
             <tbody>
-
+                @php
+                    $value= 1.5;
+                @endphp
                 @foreach ($products as $product)
-                    <tr>
+                    <tr style="transition: all {{$value++}}s ease-out" class="slide-top-effect">
                         <td>{{ $product->id }}</td>
                         <td><img style="width: 70px;" src="{{ asset($product->image) }}" alt=""></td>
                         <td>{{ $product->name }}</td>

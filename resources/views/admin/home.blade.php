@@ -18,7 +18,7 @@
 
                 <div class="admin-content-middle">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1 class="slide-bottom-effect">Dashboard</h1>
                         
                     </div>
                     <div class="admin-content-main">

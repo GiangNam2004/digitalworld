@@ -8,6 +8,41 @@
 <body>
     <!--header-->
     @include('parts.header')
+        {{-- loading --}}
+    <div class="loading-effect">
+        <div class="cat">
+            <div class="ear ear-l">
+            </div>
+            <div class="ear ear-r">
+            </div>
+            <div class="eye eye-l">
+                <div class="circle">
+                </div>
+            </div>
+            <div class="eye eye-r">
+                <div class="circle">
+                </div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="whiskers whiskers-1">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="whiskers whiskers-2">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="path">
+            <div class="mouse">
+                <div class="tail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="dark-effect"></div>
     <!--slider-->
     <section class="slider">
         <div class="slider-items">
@@ -23,12 +58,12 @@
         </div>
         <div class="slider-arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-left" viewBox="0 0 16 16">
+                class="bi bi-arrow-left slide-right-effect" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
             </svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                class="bi bi-arrow-right slide-left-effect" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
             </svg>
@@ -38,13 +73,16 @@
     <section class="sale-products">
         <div class="container">
             <div class="row-grid">
-                <p class="heading-text">Sản Phẩm Mới</p>
+                <p class="heading-text slide-left-effect">Sản Phẩm Mới</p>
             </div>
             <div class="row-grid row-grid-sale-product">
                 @foreach ($products as $product)
-                    <div class="sale-product-item">
-                        <a href="/product/{{ $product->id }}"><img src="{{ asset($product->image) }}"
-                                alt=""></a>
+                    <div class="sale-product-item slide-bottom-effect">
+                        <a href="/product/{{ $product->id }}">
+                            <div class="border">
+                                <img src="{{ asset($product->image) }}" alt="">
+                            </div>
+                        </a>
                         <p><a href="">{{ $product->name }}</a> </p>
                         <span>{{ $product->origin }}</span>
                         <div class="product-item-price">
@@ -59,21 +97,17 @@
     </section>
     <!--footer-->
     @include('parts.footer')
-    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "ece7c765-2090-4ee1-a7c8-47b9165a1dcc";
         (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/68530056bd31ea190fe30ea0/1iu23il8s';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
         })();
     </script>
-    <!--End of Tawk.to Script-->
 </body>
 
 </html>

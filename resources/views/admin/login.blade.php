@@ -11,7 +11,7 @@
 <body>
     <div class="login-wrapper">
         <div class="login-box">
-            <div class="logo-container">
+            <div class="logo-container slide-top-effect">
                 <img src="backend\asset\images\logo_admin.png" alt="Logo" class="logo">
             </div>
             <h1>Chào mừng trở lại!</h1>
@@ -28,7 +28,6 @@
             <p class="signup-link">Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
         </div>
     </div>
-
 </body>
 
 </html>

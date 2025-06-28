@@ -18,7 +18,7 @@
 
                 <div class="admin-content-middle">
                     <div class="admin-content-main-title">
-                        <h1>{{isset($title)? $title : 'Dashboard'}}</h1>
+                        <h1 class="slide-right-effect">{{isset($title)? $title : 'Dashboard'}}</h1>
                     </div>
                     <div class="admin-content-main">
                         @yield('content')

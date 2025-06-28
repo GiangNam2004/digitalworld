@@ -8,27 +8,58 @@
 <body>
     <!--header-->
     @include('parts.header')
+    {{-- loading --}}
+    <div class="loading-effect">
+        <div class="cat">
+            <div class="ear ear-l">
+            </div>
+            <div class="ear ear-r">
+            </div>
+            <div class="eye eye-l">
+                <div class="circle">
+                </div>
+            </div>
+            <div class="eye eye-r">
+                <div class="circle">
+                </div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="whiskers whiskers-1">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="whiskers whiskers-2">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="path">
+            <div class="mouse">
+                <div class="tail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="dark-effect"></div>
     {{-- content --}}
     @yield('content')
     <!--sale-product-->
     @include('parts.saleproduct')
     <!--footer-->
     @include('parts.footer')
-    <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "ece7c765-2090-4ee1-a7c8-47b9165a1dcc";
         (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/68530056bd31ea190fe30ea0/1iu23il8s';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
         })();
     </script>
-    <!--End of Tawk.to Script-->
 </body>
 
 </html>

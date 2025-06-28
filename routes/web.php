@@ -37,7 +37,7 @@ Route::post('/admin/product/edit/{id}', [ProductController::class, 'update_produ
 
 
 //order
-Route::get('/admin/order/list', [OrderController::class, 'list_order']);
+Route::get('/admin/order/list/{text}', [OrderController::class, 'list_order']);
 Route::get('/admin/order/detail/{order_detail}', [OrderController::class, 'detail_order']);
 Route::get('/admin/order/delete', [OrderController::class, 'delete_order']);
 
@@ -52,6 +52,7 @@ Route::post('/uploads', [UploadController::class, 'uploadImages']);
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/product/{id}', [FrontendController::class, 'show_product_id'])->where('id', '[0-9]+');
 Route::get('/product/{brand}', [FrontendController::class, 'show_product_brand'])->where('brand', '[\p{L}\p{N}\s\-]+');
+Route::post('/product/text',[FrontendController::class,'show_product_text']);
 Route::get('/order/confirm/{id}', [FrontendController::class, 'confirm_order']);
 Route::get('/order/token/check', [OrderController::class, 'check_order_token']);
 Route::get('/order/success', [FrontendController::class, 'success_order']);

@@ -256,6 +256,7 @@ li {
     grid-template-columns: 70% 30%;
     padding: 12px;
     column-gap: 20px;
+    height: 100vh;
 }
 
 .admin-content-main-left input {
@@ -374,22 +375,121 @@ td {
 .admin-content-main-order-list table td {
     padding: 12px 18px;
 }
+
 /* addition css */
-#input-file-img, .input-file-imgs {
+#input-file-img,
+.input-file-imgs {
     padding: 12px 0;
 }
+
 #input-file-img img {
     width: 70px;
 
 }
+
 #input-file-imgs img {
     width: 70px;
     margin-right: 10px;
 }
+
 .ck-editor__main ul {
     padding-left: 20px;
 }
 
 .ck-editor__main li {
     list-style: unset;
+}
+
+.admin-content-main-order-list-btn .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-content-main-order-list-btn .btn-left,
+.btn-right {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.admin-content-main-order-list-btn .btn-left:hover,
+.btn-right:hover {
+    background-color: #0056b3;
+}
+
+.admin-content-main-order-list-btn {
+    background-color: var(--sub-bg-color);
+}
+
+/* slide */
+
+.slide-left-effect {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1.5s ease-out;
+}
+
+.slide-left-effect.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-right-effect {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1.5s ease-out;
+}
+
+.slide-right-effect.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-top-effect {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: all 1.5s ease-out;
+}
+
+.slide-top-effect.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-bottom-effect {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1.5s ease-out;
+}
+
+.slide-bottom-effect.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-effect {
+    perspective: 2000px;
+}
+
+.card-effect .card {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-effect .card:hover {
+    transform: rotateY(20deg) rotateX(10deg);
+}
+
+.fade-in-effect {
+    opacity: 0;
+    transition: opacity 3s ease-out;
+}
+
+.fade-in-effect.in-view {
+    opacity: 1;
 }
