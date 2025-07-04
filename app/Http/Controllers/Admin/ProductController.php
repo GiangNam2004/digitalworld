@@ -33,7 +33,7 @@ class ProductController extends Controller
     }
     public function list_product()
     {
-        $product = DB::table('products')->paginate(8);
+        $product = DB::table('products')->get()->all();
         return view('admin.product.list', [
             'title' => 'Danh Sách Sản Phẩm',
             'products' => $product

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\CheckoutController;
 
+//intro
+Route::get('/', function () {
+    return view('intro'); 
+});
+
 //login
 Route::get('/login', [FrontendController::class, 'show_login'])->name('login');
 Route::post('/check_login', [FrontendController::class, 'check_login']);
@@ -49,7 +54,7 @@ Route::post('/upload', [UploadController::class, 'uploadImage']);
 Route::post('/uploads', [UploadController::class, 'uploadImages']);
 
 //frontend
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/home', [FrontendController::class, 'index']);
 Route::get('/product/{id}', [FrontendController::class, 'show_product_id'])->where('id', '[0-9]+');
 Route::get('/product/{brand}', [FrontendController::class, 'show_product_brand'])->where('brand', '[\p{L}\p{N}\s\-]+');
 Route::post('/product/text',[FrontendController::class,'show_product_text']);

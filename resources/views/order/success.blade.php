@@ -7,7 +7,8 @@
             </div>
             <div class="row-flex">
                 <div class="order-confirm-content">
-                    <p class="slide-right-effect">Đơn hàng của bạn đã được xác nhận <span style="font-weight: bold;">Thành Công</span> ! <br>
+                    <p class="slide-right-effect">Đơn hàng của bạn đã được xác nhận <span style="font-weight: bold;">Thành
+                            Công</span> ! <br>
                         <span style="font-size: medium; font-weight: bold;">Cảm ơn bạn vì đã tin tưởng và ủng hộ shop &lt3!!!
                         </span> <br>
                         <span style="font-size: small;"> Chúng tôi sẽ <span
@@ -19,21 +20,28 @@
                     <form action="{{ url('/momo_payment') }}" method="post">
                         @csrf
                         <input type="hidden" name="total_momo" value="10000">
-                        <button style="background-color: red" type="submit" class="main-btn slide-left-effect" name="payUrl">🤑Thanh
-                            toán MOMO🤑</button>
+                        <div class="slide-left-effect">
+                            <button style="background-color: red" type="submit" class="main-btn" name="payUrl">🤑Thanh
+                                toán MOMO🤑</button>
+                        </div>
                     </form>
                     <br>
                     <form action="{{ url('/vnpay_payment') }}" method="post">
                         @csrf
                         <input type="hidden" name="total_vnpay" value="10000">
-                        <button style="background-color: red" type="submit" class="main-btn slide-right-effect" name="redirect">🤑Thanh toán
-                            VNPAY🤑</button>
+                        <div class="slide-right-effect">
+                            <button style="background-color: red" type="submit" class="main-btn " name="redirect">🤑Thanh
+                                toán
+                                VNPAY🤑</button>
+                        </div>
                     </form>
 
                     <br>
-                    <button class="main-btn slide-bottom-effect">
-                        Tiếp tục mua hàng
-                    </button>
+                    <div class="slide-bottom-effect">
+                        <button class="main-btn">
+                            Tiếp tục mua hàng
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

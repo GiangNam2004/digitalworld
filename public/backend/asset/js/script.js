@@ -31,3 +31,21 @@ $(document).ready(function () {
     // Khởi tạo hiệu ứng khi trang tải lần đầu
     $(window).trigger('scroll');
 });
+
+const form = document.querySelector('form'); // Giả sử bạn có form chứa các input file
+const avatarFileInput = document.getElementById('file');
+const productFilesInput = document.getElementById('files');
+
+form.addEventListener('submit', function(event) {
+    // Kiểm tra nếu người dùng không chọn ảnh đại diện
+    if (avatarFileInput.files.length === 0) {
+        alert('Vui lòng chọn ảnh đại diện');
+        event.preventDefault();  // Ngừng gửi form
+    }
+
+    // Kiểm tra nếu người dùng không chọn ảnh sản phẩm
+    if (productFilesInput.files.length === 0) {
+        alert('Vui lòng chọn ảnh sản phẩm');
+        event.preventDefault();  // Ngừng gửi form
+    }
+});

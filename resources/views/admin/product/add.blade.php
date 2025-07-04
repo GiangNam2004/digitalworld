@@ -5,11 +5,11 @@
         <div class="admin-content-main-left">
             <div class="admin-content-main-double-input slide-left-effect">
                 <input type="text" value="{{old('name')}}" required name="name" placeholder="Tên Sản Phẩm">
-                <input type="text" value="{{old('origin')}}" name="origin" placeholder="Nơi Sản Xuất">
+                <input type="text" value="{{old('origin')}}" required name="origin" placeholder="Nơi Sản Xuất">
             </div>
             <div class="admin-content-main-double-input slide-right-effect">
-                <input type="text" value="{{old('price_normal')}}" name="price_normal" placeholder="Giá Bán">
-                <input type="text" value="{{old('price_sale')}}" name="price_sale" placeholder="Giá Giảm">
+                <input type="number" value="{{old('price_normal')}}" name="price_normal" placeholder="Giá Bán">
+                <input type="number" value="{{old('price_sale')}}" name="price_sale" placeholder="Giá Giảm">
             </div>
             <div class="ckeditor slide-top-effect">
                 <textarea class="editor_des" value="{{old('description')}}" name="description" id="" rows="30">Đặc Điểm Nổi Bật</textarea>
@@ -22,14 +22,14 @@
         <div class="admin-content-main-right">
             <div class="admin-content-main-right-image slide-bottom-effect">
                 <label for="file">Ảnh Đại Diện</label>
-                <input id="file" type="file">
+                <input id="file" type="file" >
                 <input type="hidden" name="image" id="input-file-img-hiden">
                 <div class="image-display" id="input-file-img">
                 </div>
             </div>
             <div class="admin-content-main-right-images slide-top-effect">
                 <label for="files">Ảnh Sản Phẩm</label>
-                <input id="files" type="file" multiple>
+                <input id="files" type="file" multiple >
                 <div class="images-display" id="input-file-imgs">
                 </div>
             </div>

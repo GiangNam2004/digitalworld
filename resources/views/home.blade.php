@@ -8,7 +8,7 @@
 <body>
     <!--header-->
     @include('parts.header')
-        {{-- loading --}}
+    {{-- loading --}}
     <div class="loading-effect">
         <div class="cat">
             <div class="ear ear-l">
@@ -107,6 +107,43 @@
             s.async = 1;
             d.getElementsByTagName("head")[0].appendChild(s);
         })();
+    </script>
+    <script>
+        const snowflakesContainer = document.createElement('div');
+        snowflakesContainer.classList.add('snowflakes');
+        document.body.appendChild(snowflakesContainer); // Thêm div chứa tuyết vào trang
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+
+            // Vị trí ngẫu nhiên trên màn hình
+            snowflake.style.left = `${Math.random() * 100-7}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 5 + 7}s`; // Thời gian rơi khác nhau
+
+            const size = Math.random() * 40 + 30; // Tạo kích thước ngẫu nhiên trong phạm vi 10px đến 50px
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+
+
+            // Thêm ảnh bông tuyết vào mỗi bông tuyết
+            const img = document.createElement('img');
+            img.src =
+            '/frontend/asset/images/snowflake.png'; // Đặt URL bức ảnh bông tuyết của bạn (hãy thay bằng URL ảnh bông tuyết thật)
+            img.style.width = '100%'; // Điều chỉnh kích thước bông tuyết (tùy ý)
+            img.style.height = '100%'; // Điều chỉnh kích thước bông tuyết (tùy ý)
+            snowflake.appendChild(img);
+
+            snowflakesContainer.appendChild(snowflake);
+
+            // Xóa bông tuyết khi nó đã rơi hết màn hình
+            setTimeout(() => {
+                snowflake.remove();
+            }, 7000); // Sau 10 giây
+        }
+
+        // Tạo bông tuyết mỗi 300ms
+        setInterval(createSnowflake, 400);
     </script>
 </body>
 

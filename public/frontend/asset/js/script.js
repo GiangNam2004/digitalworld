@@ -103,6 +103,8 @@ $(document).ready(function () {
             // Kiểm tra xem phần tử đã vào màn hình chưa
             if (windowBottom > elementTop) {
                 $(this).addClass('in-view');  // Thêm class để kích hoạt hiệu ứng
+            }else{
+                $(this.classList.remove('in-view'));
             }
         });
     });
@@ -110,11 +112,15 @@ $(document).ready(function () {
     // Khởi tạo hiệu ứng khi trang tải lần đầu
     $(window).trigger('scroll');
 });
+
+
+
+
 window.onbeforeunload = function () {
     document.querySelector('.loading-effect').style.display = 'flex';
     document.querySelector('.dark-effect').classList.add('show');
-    setTimeout(function () {
-        document.querySelector('.loading-effect').style.display = 'none';
-        document.querySelector('.dark-effect').classList.remove('show');
-    }, 10000);
 };
+window.onload = function () {
+    document.querySelector('.loading-effect').style.display = 'none';
+    document.querySelector('.dark-effect').classList.remove('show');
+}

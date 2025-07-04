@@ -9,7 +9,7 @@
                     </svg>
                 </div>
                 <div class="header-logo slide-top-effect">
-                    <a href="/"><img src="{{ asset('frontend/asset/images/logo.png') }}" alt=""></a>
+                    <a href="/home"><img src="{{ asset('frontend/asset/images/logo.png') }}" alt=""></a>
                 </div>
                 <div class="header-logo-mobile">
                     <img src="{{ asset('frontend/asset/images/logo-mobile.png') }}" alt="">
@@ -17,7 +17,8 @@
                 <div class="header-nav slide-bottom-effect">
                     <nav>
                         <ul>
-                            <li><a href="/">SẢN PHẨM</a></li>
+                            <li><a href="/home">SẢN PHẨM</a>
+                            </li>
                             @foreach ($brands as $brand)
                                 <li><a href="/product/{{ $brand->origin }}">{{ mb_strtoupper($brand->origin) }}</a></li>
                             @endforeach

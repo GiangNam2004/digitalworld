@@ -81,7 +81,7 @@
                             </table>
                             <div class="slide-right-effect">
                                 <button formaction="/cart/update" class="main-btn">Cập nhật Giỏ hàng</button>
-                                <a style="color: crimson; font-style: italic" href="/">>>>Tiếp tục Mua hàng</a>
+                                <a style="color: crimson; font-style: italic" href="/home">>>>Tiếp tục Mua hàng</a>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,9 @@
                         <div class="cart-section-right-input-note slide-left-effect">
                             <input type="text" placeholder="Ghi chú" name="note" id="">
                         </div>
-                        <button class="main-btn slide-right-effect">Gửi Đơn Hàng</button>
+                        <div class="slide-right-effect">
+                            <button class="main-btn ">Gửi Đơn Hàng</button>
+                        </div>
                     </div>
                 </div>
             </div>

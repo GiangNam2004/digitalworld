@@ -18,7 +18,7 @@
                     $value= 1.5;
                 @endphp
                 @foreach ($products as $product)
-                    <tr style="transition: all {{$value++}}s ease-out" class="slide-top-effect">
+                        <tr >
                         <td>{{ $product->id }}</td>
                         <td><img style="width: 70px;" src="{{ asset($product->image) }}" alt=""></td>
                         <td>{{ $product->name }}</td>
